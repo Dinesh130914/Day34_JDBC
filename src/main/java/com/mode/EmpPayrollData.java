@@ -7,6 +7,15 @@ public class EmpPayrollData {
 	String name;
 	String gender;
 	Date start;
+	double salary;
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
 
 	public int getEmp_id() {
 		return emp_id;
