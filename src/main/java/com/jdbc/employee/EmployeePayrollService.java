@@ -20,9 +20,7 @@ public class EmployeePayrollService {
 		EmployeePayrollService empservice = new EmployeePayrollService();
 		empservice.countEmployees(con);
 		empservice.getTotalSalary(con);
-		// empservice.getEmpList(con);
-		// empservice.getEmpDataonDateWithParticularRange("2016-02-14-", "2021-01-27",
-		// con);
+
 	}
 
 	public List<EmpPayrollData> getEmpList(Connection con) {
@@ -68,32 +66,6 @@ public class EmployeePayrollService {
 			e.printStackTrace();
 		}
 		return sts;
-	}
-
-	public List<EmpPayrollData> getEmpDataonDateWithParticularRange(String start, String end, Connection con) {
-		try {
-			EmpPayrollData rangeData = new EmpPayrollData();
-			PreparedStatement ps = con.prepareStatement(sql.DATE_RANGE_EMP_DATA);
-			ResultSet dateRs = ps.executeQuery();
-			while (dateRs.next()) {
-				rangeData.setEmp_id(dateRs.getInt("id"));
-				rangeData.setName(dateRs.getString("name"));
-				rangeData.setGender(dateRs.getString("gender"));
-				rangeData.setStart(dateRs.getDate("start_date"));
-				rangeData.setSalary(dateRs.getDouble("salary"));
-			}
-			emplist.forEach(emp -> {
-				System.out.println("Emp_Id" + emp.getEmp_id());
-				System.out.println("Name" + emp.getName());
-				System.out.println("Gender" + emp.getGender());
-				System.out.println("Salary" + emp.getSalary());
-				System.out.println("Start_Date" + emp.getStart());
-			});
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return emplist;
-
 	}
 
 	public void countEmployees(Connection con) {
